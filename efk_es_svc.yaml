@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    component: elasticsearch-mgmt-es-cluster
+    role: client
+  name: elasticsearch-mgmt-es-cluster
+  namespace: operator
+spec:
+  ports:
+  - port: 9200
+    protocol: TCP
+    targetPort: 9200
+  selector:
+    component: elasticsearch-mgmt-es-cluster
+    role: client
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

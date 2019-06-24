@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/ssl-passthrough: "true"
+    kubernetes.io/ingress.class: haproxy
+  name: mgmt-es-kibana
+  namespace: operator
+spec:
+  rules:
+  - host: efkkibana.mgmt.srv.da.nsn-rdnet.net
+    http:
+      paths:
+      - backend:
+          serviceName: kibana-mgmt-es-cluster
+          servicePort: 5601
+status:
+  loadBalancer:
+    ingress:
+    - {}
